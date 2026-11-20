@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#112f2e">
+    <title>SortViz — визуализатор сортировок</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+</head>
+<body>
+    <header class="masthead">
+        <div class="container">
+            <h1>SortViz</h1>
+            <p>Визуализатор алгоритмов сортировки</p>
+        </div>
+    </header>
+    <main class="container workspace">
+        <section class="panel settings" aria-labelledby="settings-title">
+            <h2 id="settings-title">Настройки</h2>
+            <label for="data">Исходный массив</label>
+            <textarea id="data" rows="3" aria-describedby="data-hint">42, 17, 65, 29, 84, 53, 11, 71, 36, 91, 24, 59</textarea>
+            <small id="data-hint">От 2 до 100 целых чисел. Разделители — запятая, точка с запятой, пробел или перенос строки.</small>
+            <div class="source-actions">
+                <button type="button" id="random">Случайный массив</button>
+                <button type="button" id="open-file">Открыть файл</button>
+                <input type="file" id="file" accept=".txt,.csv" hidden>
+            </div>
+            <label for="algorithm">Алгоритм</label>
+            <select id="algorithm">
+                <option value="BUBBLE">Пузырьковая</option>
+                <option value="QUICK">Быстрая</option>
+                <option value="MERGE">Слиянием</option>
+            </select>
+            <p id="algorithm-note" class="hint"></p>
+            <label for="order">Порядок</label>
+            <select id="order">
+                <option value="ASC">По возрастанию</option>
+                <option value="DESC">По убыванию</option>
+            </select>
+            <div id="pivot-field" hidden>
+                <label for="pivot">Опорный элемент</label>
+                <select id="pivot">
+                    <option value="MIDDLE">Средний по позиции</option>
+                    <option value="FIRST">Первый</option>
+                    <option value="LAST">Последний</option>
+                    <option value="RANDOM">Случайный</option>
+                </select>
+            </div>
+            <div class="speed-heading">
+                <label for="speed">Скорость</label>
+                <output id="speed-display" for="speed">12 шаг/с</output>
+            </div>
+            <input id="speed" type="range" min="1" max="50" value="12">
+            <p id="error" class="error" role="alert" hidden></p>
+        </section>
+        <div class="results">
+            <section class="panel visualizer" aria-labelledby="chart-title">
+                <div class="chart-heading">
+                    <div>
+                        <h2 id="chart-title">Ход сортировки</h2>
+                        <p id="status" role="status">Готово к запуску</p>
+                    </div>
+                    <span id="progress" class="progress"></span>
+                </div>
+                <div class="chart">
+                    <div id="plot" class="plot" role="img" aria-label="Столбчатая диаграмма исходного массива"></div>
+                </div>
+                <ul class="legend" aria-label="Цвета столбцов">
+                    <li><span class="dot compare"></span>Сравнение</li>
+                    <li><span class="dot change"></span>Обмен или запись</li>
+                    <li><span class="dot sorted"></span>Отсортировано</li>
+                </ul>
+                <div class="playback">
+                    <button type="button" id="play" class="primary">Запустить</button>
+                    <button type="button" id="step">Шаг вперёд</button>
+                    <button type="button" id="reset">Сбросить</button>
+                </div>
+                <p class="sorted-result" id="sorted-result" hidden></p>
+            </section>
+            <section class="metrics" aria-label="Метрики сортировки">
+                <dl class="metric"><dt>Сравнения</dt><dd id="comparisons">0</dd></dl>
+                <dl class="metric"><dt>Обмены</dt><dd id="swaps">0</dd></dl>
+                <dl class="metric"><dt>Записи</dt><dd id="writes">0</dd></dl>
+                <dl class="metric"><dt>Время Java, мс</dt><dd id="duration">—</dd></dl>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

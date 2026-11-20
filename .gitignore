@@ -1,0 +1,28 @@
+# Результаты сборки
+target/
+build/
+out/
+bin/
+.gradle/
+
+# Локальный Maven и кэш зависимостей (Windows-копия)
+.tools/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
